@@ -4,13 +4,271 @@
 	--font-sans:
 		"Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-serif:
+		"Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 html,
 body {
-	@apply bg-white dark:bg-gray-950;
+	@apply bg-stone-50 dark:bg-stone-950;
 
 	@media (prefers-color-scheme: dark) {
 		color-scheme: dark;
 	}
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	@apply bg-stone-100 dark:bg-stone-900;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply bg-amber-600/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-amber-600;
+}
+
+/* Hero gradient animation */
+@keyframes gradient-shift {
+	0%, 100% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+}
+
+.hero-gradient {
+	background: linear-gradient(-45deg, #92400e, #78350f, #451a03, #1c1917, #78350f, #b45309);
+	background-size: 400% 400%;
+	animation: gradient-shift 15s ease infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+	0%, 100% { transform: translateY(0px); }
+	50% { transform: translateY(-20px); }
+}
+
+.float-animation {
+	animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-delayed {
+	animation: float 6s ease-in-out infinite;
+	animation-delay: -3s;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+	0%, 100% { box-shadow: 0 0 20px rgba(217, 119, 6, 0.3); }
+	50% { box-shadow: 0 0 40px rgba(217, 119, 6, 0.6); }
+}
+
+.pulse-glow {
+	animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.fade-in-up {
+	animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.fade-in-up-delay-1 { animation-delay: 0.2s; opacity: 0; }
+.fade-in-up-delay-2 { animation-delay: 0.4s; opacity: 0; }
+.fade-in-up-delay-3 { animation-delay: 0.6s; opacity: 0; }
+.fade-in-up-delay-4 { animation-delay: 0.8s; opacity: 0; }
+
+/* Shimmer effect */
+@keyframes shimmer {
+	0% { background-position: -200% center; }
+	100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+	background: linear-gradient(90deg, #d97706 0%, #fbbf24 25%, #f59e0b 50%, #fbbf24 75%, #d97706 100%);
+	background-size: 200% auto;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: shimmer 3s linear infinite;
+}
+
+/* Timeline connector */
+.timeline-connector {
+	@apply absolute left-1/2 w-1 bg-gradient-to-b from-amber-500 via-amber-600 to-amber-700;
+	transform: translateX(-50%);
+}
+
+/* Card hover effects */
+.era-card {
+	@apply transition-all duration-500 ease-out;
+}
+
+.era-card:hover {
+	transform: translateY(-10px) scale(1.02);
+}
+
+/* Parallax effect */
+.parallax-bg {
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* Quiz animations */
+@keyframes correct-answer {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.05); }
+	100% { transform: scale(1); }
+}
+
+.correct-answer {
+	animation: correct-answer 0.5s ease-out;
+	@apply bg-emerald-500/20 border-emerald-500;
+}
+
+@keyframes wrong-answer {
+	0%, 100% { transform: translateX(0); }
+	20%, 60% { transform: translateX(-5px); }
+	40%, 80% { transform: translateX(5px); }
+}
+
+.wrong-answer {
+	animation: wrong-answer 0.5s ease-out;
+	@apply bg-red-500/20 border-red-500;
+}
+
+/* Rotating globe */
+@keyframes rotate-slow {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+.rotate-slow {
+	animation: rotate-slow 60s linear infinite;
+}
+
+/* Typewriter effect */
+@keyframes typewriter {
+	from { width: 0; }
+	to { width: 100%; }
+}
+
+@keyframes blink-caret {
+	from, to { border-color: transparent; }
+	50% { border-color: #d97706; }
+}
+
+.typewriter {
+	overflow: hidden;
+	border-right: 3px solid #d97706;
+	white-space: nowrap;
+	animation: typewriter 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Glass effect */
+.glass {
+	@apply bg-white/10 backdrop-blur-md border border-white/20;
+}
+
+.glass-dark {
+	@apply bg-black/20 backdrop-blur-md border border-white/10;
+}
+
+/* Decorative patterns */
+.pattern-dots {
+	background-image: radial-gradient(circle, #d97706 1px, transparent 1px);
+	background-size: 20px 20px;
+}
+
+.pattern-grid {
+	background-image:
+		linear-gradient(to right, rgba(217, 119, 6, 0.1) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(217, 119, 6, 0.1) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+/* Text gradient */
+.text-gradient {
+	@apply bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent;
+}
+
+/* Interactive map styles */
+.map-region {
+	@apply transition-all duration-300 cursor-pointer;
+}
+
+.map-region:hover {
+	@apply fill-amber-500/80;
+	filter: drop-shadow(0 0 10px rgba(217, 119, 6, 0.5));
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+	from { width: 0%; }
+}
+
+.progress-animated {
+	animation: progress-fill 1s ease-out forwards;
+}
+
+/* Staggered list animation */
+.stagger-item {
+	opacity: 0;
+	animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Navigation active state */
+.nav-link {
+	@apply relative;
+}
+
+.nav-link::after {
+	content: '';
+	@apply absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+	@apply w-full;
+}
+
+/* Tooltip */
+.tooltip {
+	@apply relative;
+}
+
+.tooltip::before {
+	content: attr(data-tooltip);
+	@apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 text-sm bg-stone-800 text-white rounded-lg opacity-0 pointer-events-none transition-opacity duration-300 whitespace-nowrap;
+}
+
+.tooltip:hover::before {
+	@apply opacity-100;
 }
